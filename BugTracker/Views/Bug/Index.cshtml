@@ -1,0 +1,73 @@
+﻿@model IEnumerable<BugTracker.Models.Bug>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h1>Bug Tracking</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BugTrackId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BugName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BugDescription)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Priority)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateFiled)
+                    </th>
+                    <th>
+                        <a asp-action="AddOrEdit" class="btn btn-sm btn-success">
+                            <i class="fa-solid fa-plus"></i> New
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BugTrackId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BugName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BugDescription)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Priority)
+                        </td>
+                           <td>
+                            @Html.DisplayFor(modelItem => item.DateFiled)
+                        </td>
+                        <td>
+                            <form asp-action="Delete" asp-route-id="@item.BugTrackId">
+                                <div class="btn-group btn-group-sm">
+                                    <a asp-action="AddOrEdit" asp-route-id="@item.BugTrackId" class="btn btn-warning">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                    <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('Are you sure to delete this record?')">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

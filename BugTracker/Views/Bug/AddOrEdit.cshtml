@@ -1,0 +1,49 @@
+﻿@model BugTracker.Models.Bug
+
+@{
+    ViewData["Title"] = "Tracker";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h1>Bug Tracker</h1>
+        <form asp-action="AddOrEdit" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="BugTrackId" />
+            <input type="hidden" asp-for="DateFiled" />
+            <div class="form-group">
+                <label asp-for="BugName" class="control-label"></label>
+                <input asp-for="BugName" class="form-control" />
+                <span asp-validation-for="BugName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BugDescription" class="control-label"></label>
+                <input asp-for="BugDescription" class="form-control" />
+                <span asp-validation-for="BugDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Priority" class="control-label"></label>
+                <input asp-for="Priority" class="form-control" />
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-primary w-100" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <a asp-action="Index" class="btn btn-secondary  w-100">View All</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}
